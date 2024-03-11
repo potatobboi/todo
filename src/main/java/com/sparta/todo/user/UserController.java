@@ -33,6 +33,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<ResponseDto<Void>> login(
         @RequestBody LoginRequestDto requestDto) {
+
         return ResponseEntity.ok()
             .header(HttpHeaders.AUTHORIZATION, userService.login(requestDto))
             .body(ResponseDto.<Void>builder()
