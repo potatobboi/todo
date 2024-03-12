@@ -3,6 +3,7 @@ package com.sparta.todo.todo;
 import com.sparta.todo.common.ResponseDto;
 import com.sparta.todo.user.UserDetailsImpl;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +47,18 @@ public class TodoController {
                 .statusCode(HttpStatus.OK.value())
                 .message("할일카드 단건 조회 성공")
                 .data(responseDto)
+                .build());
+    }
+
+    @GetMapping
+    public ResponseEntity<ResponseDto<List<TodoResponseDto>>> getTodoList() {
+        List<TodoResponseDto> response = todoService.getTodoList();
+
+        return ResponseEntity.status(HttpStatus.OK.value())
+            .body(ResponseDto.<List<TodoResponseDto>>builder()
+                .statusCode(HttpStatus.OK.value())
+                .message("할일카드 전체 조회 성공")
+                .data(response)
                 .build());
     }
 }
