@@ -44,4 +44,7 @@ public class Comment extends Timestamped {
         this.user = user;
     }
 
+    public void update(CommentRequestDto requestDto) {
+        this.content = requestDto.getContent();
+    }
 }

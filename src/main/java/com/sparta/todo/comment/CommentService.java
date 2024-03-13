@@ -6,8 +6,10 @@ import com.sparta.todo.todo.Todo;
 import com.sparta.todo.todo.TodoRepository;
 import com.sparta.todo.user.User;
 import java.util.List;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -37,10 +39,31 @@ public class CommentService {
             .toList();
     }
 
+    @Transactional
+    public void updateComment(Long todoId, Long commentId, CommentRequestDto requestDto, User user) {
+            findTodo(todoId);
+            Comment comment = findComment(commentId);
+
+            validateUser(comment.getUser().getId(), user.getId());
+            comment.update(requestDto);
+    }
+
     private Todo findTodo(Long todoId) {
 
         return todoRepository.findById(todoId).orElseThrow(
-            () -> new InvalidInputException(ErrorCode.NOT_FOUND_POST)
+            () -> new InvalidInputException(ErrorCode.NOT_FOUND_TODO)
         );
+    }
+
+    private Comment findComment(Long commentId) {
+        return commentRepository.findById(commentId).orElseThrow(
+            () -> new InvalidInputException(ErrorCode.NOT_FOUND_COMMENT)
+        );
+    }
+
+    private void validateUser(Long writerId, Long inputId) {
+        if (!Objects.equals(writerId, inputId)) {
+            throw new InvalidInputException(ErrorCode.NOT_VALID_USER);
+        }
     }
 }

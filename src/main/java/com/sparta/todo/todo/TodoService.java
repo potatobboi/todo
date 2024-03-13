@@ -52,7 +52,7 @@ public class TodoService {
     private Todo findTodo(Long todoId) {
 
         return todoRepository.findById(todoId).orElseThrow(
-            () -> new InvalidInputException(ErrorCode.NOT_FOUND_POST)
+            () -> new InvalidInputException(ErrorCode.NOT_FOUND_TODO)
         );
     }
 
