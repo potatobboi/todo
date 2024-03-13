@@ -48,6 +48,17 @@ public class CommentService {
             comment.update(requestDto);
     }
 
+    @Transactional
+    public void deleteComment(Long todoId, Long commentId, User user) {
+        findTodo(todoId);
+        Comment comment = findComment(commentId);
+
+        validateUser(comment.getUser().getId(), user.getId());
+        validateTodo(comment.getTodo().getId(), todoId);
+
+        commentRepository.delete(comment);
+    }
+
     private Todo findTodo(Long todoId) {
 
         return todoRepository.findById(todoId).orElseThrow(
@@ -64,6 +75,12 @@ public class CommentService {
     private void validateUser(Long writerId, Long inputId) {
         if (!Objects.equals(writerId, inputId)) {
             throw new InvalidInputException(ErrorCode.NOT_VALID_USER);
+        }
+    }
+
+    private void validateTodo(Long todoId, Long inputId) {
+        if (!Objects.equals(todoId, inputId)) {
+            throw new InvalidInputException(ErrorCode.NOT_VALID_TODO);
         }
     }
 }
