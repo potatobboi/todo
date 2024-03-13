@@ -5,6 +5,7 @@ import com.sparta.todo.common.exception.InvalidInputException;
 import com.sparta.todo.todo.Todo;
 import com.sparta.todo.todo.TodoRepository;
 import com.sparta.todo.user.User;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,15 @@ public class CommentService {
             .build();
 
         return new CommentResponseDto(commentRepository.save(comment));
+    }
+
+    public List<CommentResponseDto> getComments(Long todoId) {
+        findTodo(todoId);
+        List<Comment> commentList = commentRepository.findAllByTodoIdOrderByCreatedAtDesc(todoId);
+
+        return commentList.stream()
+            .map(CommentResponseDto::new)
+            .toList();
     }
 
     private Todo findTodo(Long todoId) {
