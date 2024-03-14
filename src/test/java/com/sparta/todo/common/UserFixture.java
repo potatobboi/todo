@@ -10,7 +10,7 @@ public interface UserFixture {
     String REPOSITORY_PREFIX = "r";
     Long TEST_USER_ID = 1L;
     String TEST_USER_NAME = "username";
-    String TEST_USER_PASSWORD = "TestPass!";
+    String TEST_USER_PASSWORD = "TestPass1!";
     String TEST_USER_PASSWORD_FAIL = "fail-" + TEST_USER_PASSWORD;
 
     User TEST_USER = User.builder()
