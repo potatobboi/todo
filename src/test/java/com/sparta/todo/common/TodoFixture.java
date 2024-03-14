@@ -7,6 +7,7 @@ import com.sparta.todo.todo.TodoResponseDto;
 public interface TodoFixture extends UserFixture {
 
     Long TEST_TODO_ID = 1L;
+    Long TEST_ANOTHER_TODO_ID = 2L;
     String TEST_TODO_TITLE = "title";
     String TEST_TODO_CONTENT = "content";
 
@@ -29,15 +30,15 @@ public interface TodoFixture extends UserFixture {
         .build();
 
 
-    TodoResponseDto postResponseDto1 = new TodoResponseDto(TEST_TODO);
-    TodoResponseDto postResponseDto2 = new TodoResponseDto(TEST_TODO2);
+    TodoResponseDto todoResponseDto1 = new TodoResponseDto(TEST_TODO);
+    TodoResponseDto todoResponseDto2 = new TodoResponseDto(TEST_TODO2);
 
-    TodoRequestDto TEST_POST_REQUEST_DTO = TodoRequestDto.builder()
+    TodoRequestDto TEST_TODO_REQUEST_DTO = TodoRequestDto.builder()
         .title(TEST_TODO_TITLE)
         .content(TEST_TODO_CONTENT)
         .build();
 
-    TodoResponseDto TEST_POST_RESPONSE_DTO = TodoResponseDto.builder()
+    TodoResponseDto TEST_TODO_RESPONSE_DTO = TodoResponseDto.builder()
         .title(TEST_TODO_TITLE)
         .content(TEST_TODO_CONTENT)
         .build();
