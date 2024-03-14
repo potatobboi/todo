@@ -2,11 +2,13 @@ package com.sparta.todo.comment;
 
 import com.sparta.todo.user.UserDto;
 import java.time.LocalDateTime;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
+@EqualsAndHashCode
 public class CommentResponseDto {
 
     private Long id;
