@@ -14,19 +14,16 @@ public interface TodoFixture extends UserFixture {
     Todo TEST_TODO = Todo.builder()
         .title(TEST_TODO_TITLE)
         .content(TEST_TODO_CONTENT)
-        .user(TEST_USER)
         .build();
 
     Todo TEST_TODO2 = Todo.builder()
         .title(TEST_TODO_TITLE)
         .content(TEST_TODO_CONTENT)
-        .user(TEST_USER)
         .build();
 
     Todo TEST_ANOTHER_TODO = Todo.builder()
         .title(ANOTHER_PREFIX + TEST_TODO_TITLE)
         .content(ANOTHER_PREFIX + TEST_TODO_CONTENT)
-        .user(TEST_ANOTHER_USER)
         .build();
 
 
